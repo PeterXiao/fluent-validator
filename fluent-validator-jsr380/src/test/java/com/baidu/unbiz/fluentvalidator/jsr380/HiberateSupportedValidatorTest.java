@@ -1,4 +1,4 @@
-package com.baidu.unbiz.fluentvalidator.jsr303;
+package com.baidu.unbiz.fluentvalidator.jsr380;
 
 import static com.baidu.unbiz.fluentvalidator.ResultCollectors.toComplex;
 import static com.baidu.unbiz.fluentvalidator.ResultCollectors.toSimple;
@@ -26,6 +26,7 @@ import com.baidu.unbiz.fluentvalidator.dto.Company;
 import com.baidu.unbiz.fluentvalidator.dto.CompanyBuilder;
 import com.baidu.unbiz.fluentvalidator.dto.Department;
 import com.baidu.unbiz.fluentvalidator.exception.MyException;
+import com.baidu.unbiz.fluentvalidator.jsr303.HibernateSupportedValidator;
 import com.baidu.unbiz.fluentvalidator.util.DateUtil;
 import com.baidu.unbiz.fluentvalidator.validator.CompanyCustomValidator;
 
@@ -140,7 +141,7 @@ public class HiberateSupportedValidatorTest {
         System.out.println(ret);
         assertThat(ret.isSuccess(), is(false));
         assertThat(ret.getErrorNumber(), is(2));
-        assertThat(ret.getErrors().get(0), is("may not be null"));
+        assertThat(ret.getErrors().get(0), is("must not be null"));  // may not be null
         assertThat(ret.getErrors().get(1), is("Company id is not valid, invalid value=-1"));
     }
 
@@ -157,7 +158,7 @@ public class HiberateSupportedValidatorTest {
         System.out.println(ret);
         assertThat(ret.isSuccess(), is(false));
         assertThat(ret.getErrorNumber(), is(2));
-        assertThat(ret.getErrors().get(0).getErrorMsg(), is("may not be null"));
+        assertThat(ret.getErrors().get(0).getErrorMsg(), is("must not be null")); //must not be null may not be null
         assertThat(ret.getErrors().get(0).getField(), is("departmentList"));
         assertThat(ret.getErrors().get(0).getInvalidValue(), nullValue());
         assertThat(ret.getErrors().get(1).getErrorMsg(), is("Company id is not valid, invalid value=-1"));

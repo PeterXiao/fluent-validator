@@ -1,4 +1,4 @@
-package com.baidu.unbiz.fluentvalidator.jsr303;
+package com.baidu.unbiz.fluentvalidator.jsr380;
 
 import static com.baidu.unbiz.fluentvalidator.ResultCollectors.toSimple;
 import static org.hamcrest.core.Is.is;
@@ -21,6 +21,7 @@ import com.baidu.unbiz.fluentvalidator.dto.CompanyBuilder;
 import com.baidu.unbiz.fluentvalidator.grouping.AddCompany;
 import com.baidu.unbiz.fluentvalidator.grouping.GroupingCheck;
 import com.baidu.unbiz.fluentvalidator.grouping.GroupingCheck2;
+import com.baidu.unbiz.fluentvalidator.jsr303.HibernateSupportedValidator;
 import com.baidu.unbiz.fluentvalidator.validator.CompanyCustomValidator;
 
 /**
