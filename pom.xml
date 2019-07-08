@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.baidu.unbiz</groupId>
     <artifactId>fluent-validator-parent</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>fluent-validator-parent</name>
     <packaging>pom</packaging>
     <description>A simple Java validation framework leveraging fluent interface style and JSR 303 specification
@@ -12,7 +12,8 @@
 
     <modules>
         <module>fluent-validator</module>
-        <module>fluent-validator-jsr303</module>
+        <!-- <module>fluent-validator-jsr303</module> -->
+		<module>fluent-validator-jsr380</module>
         <module>fluent-validator-spring</module>
     </modules>
 
@@ -20,16 +21,17 @@
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <java.version>1.6</java.version>
-        <source.version>1.6</source.version>
-        <target.version>1.6</target.version>
-        <spring.version>4.1.7.RELEASE</spring.version>
-        <junit.version>4.11</junit.version>
+        <java.version>1.8</java.version>
+        <source.version>1.8</source.version>
+        <target.version>1.8</target.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
+        <junit.version>4.12</junit.version>
         <commons.lang.version>2.6</commons.lang.version>
-        <commons.lang3.version>3.2.1</commons.lang3.version>
-        <commons.beanutils.version>1.8.3</commons.beanutils.version>
-        <commons.io.version>2.4</commons.io.version>
-        <commons.collections.version>3.2.1</commons.collections.version>
+        <commons.lang3.version>3.9</commons.lang3.version>
+        <commons.beanutils.version>1.9.3</commons.beanutils.version>
+        <commons.io.version>2.6</commons.io.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
+		 <commons.collections4.version>4.3</commons.collections4.version>
     </properties>
 
     <inceptionYear>2015</inceptionYear>
@@ -162,6 +164,13 @@
                 <artifactId>commons-collections</artifactId>
                 <version>${commons.collections.version}</version>
             </dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-collections4</artifactId>
+    <version>${commons.collections4.version}</version>
+</dependency>
+
             <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
@@ -171,50 +180,50 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>5.2.1.Final</version>
+                <version>6.0.17.Final</version>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
                 <artifactId>javax.el-api</artifactId>
-                <version>2.2.4</version>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
                 <artifactId>javax.el</artifactId>
-                <version>2.2.4</version>
+                <version>3.0.0</version>
             </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.7</version>
+                <version>2.0.0-alpha0</version>
             </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.7</version>
+                <version>2.0.0-alpha0</version>
             </dependency>
 
             <!-- test dependencies -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-core</artifactId>
-                <version>1.3</version>
+                <version>2.1</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
-                <version>1.3</version>
+                <version>2.1</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.jmock</groupId>
                 <artifactId>jmock-junit4</artifactId>
-                <version>2.5.1</version>
+                <version>2.12.0</version>
                 <scope>test</scope>
                 <exclusions>
                     <exclusion>
@@ -227,7 +236,7 @@
             <dependency>
                 <groupId>org.jmock</groupId>
                 <artifactId>jmock-legacy</artifactId>
-                <version>2.5.1</version>
+                <version>2.12.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -241,14 +250,14 @@
             <dependency>
                 <groupId>org.objenesis</groupId>
                 <artifactId>objenesis</artifactId>
-                <version>1.0</version>
+                <version>3.0.1</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>18.0</version>
+                <version>28.0-jre</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -262,7 +271,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.14.1</version>
+                <version>2.22.2</version>
                 <configuration>
                     <argLine>${argLine} -Dfile.encoding=UTF-8</argLine>
                     <includes>
@@ -277,7 +286,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.2.201409121644</version>
+                <version>0.8.4</version>
                 <configuration>
                     <excludes>
                         <exclude>**/*Demo.class</exclude>
@@ -296,27 +305,27 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>4.3.0</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.1.0</version>
                 <inherited>true</inherited>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.8</version>
+                <version>3.1.1</version>
                 <inherited>true</inherited>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.1</version>
                 <inherited>true</inherited>
                 <configuration>
                     <source>${source.version}</source>
@@ -332,7 +341,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.1.2</version>
                 <inherited>true</inherited>
                 <configuration>
                     <includes>
@@ -345,7 +354,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.1.0</version>
                 <inherited>true</inherited>
                 <executions>
                     <execution>
@@ -360,14 +369,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>2.5.2</version>
                 <inherited>true</inherited>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>2.8.2</version>
                 <inherited>true</inherited>
                 <configuration>
                     <updateReleaseInfo>true</updateReleaseInfo>
@@ -377,7 +386,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.5.3</version>
             </plugin>
         </plugins>
     </build>
@@ -392,6 +401,15 @@
             </roles>
             <timezone>+8</timezone>
         </developer>
+		        <developer>
+            <name>Peter Show</name>
+            <id>PeterShowx</id>
+            <email>xiaoyulong@outlook.com</email>
+            <roles>
+                <role>Developer2</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
     </developers>
 
     <organization>
@@ -402,10 +420,10 @@
     <scm>
         <url>scm:git:git@github.com:neoremind/fluent-validator</url>
         <connection>scm:git:git@github.com:neoremind/fluent-validator</connection>
-        <tag>fluent-validator-parent-1.0.6</tag>
+        <tag>fluent-validator-parent-2.0.0-beta</tag>
     </scm>
 
-    <url>https://github.com/neoremind/fluent-validator</url>
+    <url>https://github.com/PeterXiao/fluent-validator</url>
 
     <profiles>
         <profile>
@@ -426,7 +444,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -440,7 +458,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -453,7 +471,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
